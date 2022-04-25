@@ -3,6 +3,7 @@ package br.com.zup.handora.cadastrandolivrosunicos.livro;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -19,6 +20,7 @@ public class LivroRequest {
     @ISBN(type = Type.ANY)
     private String isbn;
 
+    @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
     @Past
     private LocalDate dataPublicacao;
@@ -26,7 +28,7 @@ public class LivroRequest {
     public LivroRequest() {}
 
     public LivroRequest(@NotBlank String titulo, @NotBlank @ISBN(type = Type.ANY) String isbn,
-                        @Past LocalDate dataPublicacao) {
+                        @NotNull @Past LocalDate dataPublicacao) {
         this.titulo = titulo;
         this.isbn = isbn;
         this.dataPublicacao = dataPublicacao;
